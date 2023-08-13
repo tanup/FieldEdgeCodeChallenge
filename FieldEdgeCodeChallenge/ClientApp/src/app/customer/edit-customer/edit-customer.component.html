@@ -1,0 +1,37 @@
+<div class="edit-customer-container">
+  <h2>Edit Customer</h2>
+  <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" id="firstname" formControlName="firstname" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" id="lastname" formControlName="lastname" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" formControlName="phone_Number" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="countrycode">Country Code</label>
+      <input type="text" id="countrycode" formControlName="country_Code" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <input type="text" id="gender" formControlName="gender" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="balance">Balance</label>
+      <input type="number" id="balance" formControlName="balance" class="form-control" />
+    </div>
+    <div class="form-group" [ngStyle]="{ 'margin-top.px': 10 }">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="button" class="btn btn-secondary" [ngStyle]="{ 'margin-left.px': 10 }" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<h1 id="tableLabel">Customers</h1>
+
+<p>This component demonstrates Customer CRUD Module</p>
+
+<p *ngIf="!customers"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+  <thead>
+    <tr>
+      <th>customerId</th>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>email</th>
+      <th>phone</th>
+      <th>country_code</th>
+      <th>gender</th>
+      <th>balance</th>
+      <th>EDIT ACTION</th>
+      <th>DELETE ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cust of customers">
+      <td>{{ cust.id }}</td>
+      <td>{{ cust.firstname }}</td>
+      <td>{{ cust.lastname }}</td>
+      <td> <a [href]="'mailto:' + cust.email">{{ cust.email }}</a></td>
+      <td>{{ cust.phone_Number }}</td>
+      <td>{{ cust.country_Code }}</td>
+      <td>{{ cust.gender }}</td>
+      <td><p>Amount: {{ cust.balance | currency:'USD':'symbol':'1.2-2':'en-US' }}</p></td>
+      <td><button (click)="editCustomer(cust.id)">Edit</button></td>
+      <td><button (click)="deleteCustomer(cust.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="addNewCustomer()">Add New Customer</button>
