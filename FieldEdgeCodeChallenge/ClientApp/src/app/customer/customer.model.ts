@@ -21,6 +21,6 @@ export interface Customer {
   balance: number,
   phone_Number: string,
   currency: string
-
+  [key: string]: string | number;
 }
 

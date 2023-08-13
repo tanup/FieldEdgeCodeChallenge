@@ -39,21 +39,6 @@ namespace FieldEdgeCodeChallenge.Controllers
             }
         }
 
-        //[HttpGet("CreateCustomerList")]
-        //public async Task<IActionResult> CreateCustomerList()
-        //{
-        //    try
-        //    {
-        //        string endpoint = "CreateCustomerList";
-        //        await _apiHttpClientService.GetAsync(endpoint);
-        //        return Ok();
-        //    }
-        //    catch (HttpRequestException ex)
-        //    {
-        //        _logger.LogError($"An error occurred: {ex.Message}");
-        //        return StatusCode(500, "An error occurred while processing your request.");
-        //    }
-        //}
 
         [HttpGet("GetCustomerById/{id}")]
         public async Task<IActionResult> GetCustomerById(string id)
@@ -76,8 +61,25 @@ namespace FieldEdgeCodeChallenge.Controllers
         {
             try
             {
-                string endpoint = "Customer";
-                await _apiHttpClientService.PostAsync(endpoint, customer);
+                using (var httpClient = new HttpClient())
+                {
+                    string apiUrl = "https://getinvoices.azurewebsites.net/api/Customer/";
+                    // Set the Content-Type header to indicate JSON
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var response = await httpClient.PostAsJsonAsync(apiUrl, customer);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("API call successful.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"API call failed. Status code: {response.StatusCode}");
+                    }
+                }
+
+
                 return Ok();
             }
             catch (HttpRequestException ex)

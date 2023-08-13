@@ -3,7 +3,7 @@
 <p>This component demonstrates Customer CRUD Module</p>
 
 <p *ngIf="!customers"><em>Loading...</em></p>
-
+<div *ngIf="isLoading" class="loader"></div>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
   <thead>
     <tr>
@@ -34,4 +34,5 @@
     </tr>
   </tbody>
 </table>
-<button (click)="addNewCustomer()">Add New Customer</button>
+<!-- <button (click)="addNewCustomer()">Add New Customer</button> -->
+<button class="btn btn-primary" [routerLink]="['/customer/add']">Add New Customer</button>

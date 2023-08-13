@@ -11,18 +11,21 @@ import { Customer } from './customer.model';
 export class CustomerComponent {
   public customers: Customer[] = [];
   //put below code and test
-
+  isLoading = false;
    constructor(
      private router: Router,
      private http: HttpClient, // Inject HttpClient here
      @Inject('BASE_URL') baseUrl: string
    ) {
+    this.isLoading = true;
      http.get<Customer[]>(baseUrl + 'api/customer').subscribe(
        result => {
          this.customers = result;
+         this.isLoading = false;
        },
        error => {
          console.error(error);
+         this.isLoading = false;
        }
      );
    }
@@ -40,7 +43,8 @@ export class CustomerComponent {
    }
 
   editCustomer(id: string): void {
-    this.router.navigate(['/edit-customer', id]);
+    // this.router.navigate(['/edit-customer', id]);
+    this.router.navigate(['/customer/edit', id]);
   }
 
   addNewCustomer(): void {

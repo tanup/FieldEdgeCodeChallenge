@@ -1,0 +1,58 @@
+<div class="customer-form-container">
+    <h2>{{ isEditing ? 'Edit Customer' : 'Add Customer' }}</h2>
+    <form [formGroup]="customerForm" (ngSubmit)="submitForm()">
+      <!-- <div class="form-group" >
+        <label for="id">ID</label>
+        <input type="text" id="id" formControlName="id" class="form-control" />
+        <div *ngIf="isFieldInvalid('id')" class="error-message">*ID is required</div>
+      </div> -->
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" formControlName="id" class="form-control" [hidden]="isEditing" />
+        <div *ngIf="!isEditing && isFieldInvalid('id')" class="error-message">*ID is required</div>
+      </div>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" formControlName="firstname" class="form-control" />
+        <div *ngIf="isFieldInvalid('firstname')" class="error-message">*First Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" formControlName="lastname" class="form-control" />
+        <div *ngIf="isFieldInvalid('lastname')" class="error-message">*Last Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" />
+        <div *ngIf="isFieldInvalid('email')" class="error-message">*Email is required and must be a valid email</div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" formControlName="phone_Number" class="form-control" />
+        <div *ngIf="isFieldInvalid('phone_Number')" class="error-message">Phone Number is required</div>
+      </div>
+      <div class="form-group">
+        <label for="countrycode">Country Code</label>
+        <input type="text" id="countrycode" formControlName="country_Code" class="form-control" />
+        <div *ngIf="isFieldInvalid('country_Code')" class="error-message">Country Code is required</div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" formControlName="gender" class="form-control" />
+        <div *ngIf="isFieldInvalid('gender')" class="error-message">Gender is required</div>
+      </div>
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input type="number" id="balance" formControlName="balance" class="form-control" />
+        <div *ngIf="isFieldInvalid('balance')" class="error-message">Balance is required</div>
+      </div>
+  
+      <div class="form-group" [ngStyle]="{ 'margin-top.px': 10 }">
+        <button type="submit" class="btn btn-primary">{{ isEditing ? 'Save Changes' : 'Add Customer' }}</button>
+        <button type="button" class="btn btn-secondary" [ngStyle]="{ 'margin-left.px': 10 }" (click)="cancelEdit()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  
